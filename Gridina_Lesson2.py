@@ -25,41 +25,51 @@ while cur_idx < list_len:  # перебор элементов списка по
     cur_idx += 2  # Переходим к следующей паре значений
 print(result_list)
 
-"""3. Пользователь вводит месяц в виде целого числа от 1 до 12. Сообщить, к какому времени года относится месяц (зима, весна, лето, осень). 
+"""3. Пользователь вводит месяц в виде целого числа от 1 до 12. 
+Сообщить, к какому времени года относится месяц (зима, весна, лето, осень). 
 Напишите решения через list и dict."""
-
-seasons_schedule = ['winter', 'spring', 'summer', 'autumn']
-seasons_dict = {1 : 'winter', 2 : 'spring', 3 : 'summer', 4 : 'autumn'}
+#  Через список
+winter_list = [12, 1, 2]
+spring_list = [3, 4, 5]
+summer_list = [6, 7, 8]
+fall_list = [9, 10, 11]
 month = int(input("Введите месяц по номеру "))
-if month ==1 or month == 12 or month == 2:
-    print(seasons_dict.get(1))
-    print(seasons_schedule[0])
-elif month == 3 or month == 4 or month ==5:
-    print(seasons_dict.get(2))
-    print(seasons_schedule[1])
-elif month == 6 or month == 7 or month == 8:
-    print(seasons_dict.get(3))
-    print(seasons_schedule[2])
-elif month == 9 or month == 10 or month == 11:
-    print(seasons_dict.get(4))
-    print(seasons_schedule[3])
+if winter_list.count(month) > 0:
+    print('Зима')
+elif spring_list.count(month) > 0:
+    print('Весна')
+elif summer_list.count(month) > 0:
+    print('Лето')
+elif fall_list.count(month) > 0:
+    print('Осень')
 else:
     print("Такого месяца не существует")
+
+# Через словарь
+seasons_by_month_dictionary = {1: 'Зима', 2: 'Зима', 3: 'Весна', 4: 'Весна',
+                               5: 'Весна', 6: 'Лето', 7: 'Лето', 8: 'Лето',
+                               9: 'Осень', 10: 'Осень', 11: 'Осень', 12: 'Зима'}
+month = int(input("Введите месяц по номеру "))
+time_of_year = seasons_by_month_dictionary.get(month)
+if time_of_year is None:
+    print("Такого месяца не существует")
+else:
+    print(time_of_year)
 
 
 """4. Пользователь вводит строку из нескольких слов, разделённых пробелами. Вывести каждое слово с новой строки. 
 Строки нужно пронумеровать. Если слово длинное, выводить только первые 10 букв в слове."""
 
 my_line = input("Введите строку пожалуйста ")
-my_word = []  #не понимаю что это за переменная
+my_word = []
 num = 1
 for el in range(my_line.count(' ') + 1):
     my_word = my_line.split()
     if len(str(my_word)) <= 10:
-        print(f" {num} {my_word [el]}")
+        print(f" {num} {my_word[el]}")
         num += 1
     else:
-        print(f" {num} {my_word [el] [0:10]}")
+        print(f" {num} {my_word[el][0:10]}")
         num += 1
 
 '''5. Реализовать структуру «Рейтинг», представляющую собой набор натуральных чисел, который не возрастает. 
@@ -71,3 +81,20 @@ for el in range(my_line.count(' ') + 1):
 Пользователь ввёл число 8. Результат: 8, 7, 5, 3, 3, 2.
 Пользователь ввёл число 1. Результат: 7, 5, 3, 3, 2, 1.
 Набор натуральных чисел можно задать сразу в коде, например, my_list = [7, 5, 3, 3, 2].'''
+
+my_schedule = [7, 5, 3, 3, 2]
+print(f"Рейтинг - {my_schedule}")
+digit = int(input("Введите число (333 - выход из программы) "))
+while digit != 333:
+    for el in range(len(my_schedule)):
+        if my_schedule[el] == digit:
+            my_schedule.insert(el + 1, digit)
+            break
+        elif my_schedule[0] < digit:
+            my_schedule.insert(0, digit)
+        elif my_schedule[-1] > digit:
+            my_schedule.append(digit)
+        elif my_schedule[el] > digit and my_schedule[el + 1] < digit:
+            my_schedule.insert(el + 1, digit)
+    print(f"текущий список - {my_schedule}")
+    digit = int(input("Введите число "))
