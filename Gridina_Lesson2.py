@@ -21,7 +21,8 @@ while cur_idx < list_len:  # перебор элементов списка по
         current_element = result_list[cur_idx]  # текущий элемент списка
         next_element = result_list[cur_idx + 1]  # следующий элемент
         result_list[cur_idx] = next_element  # следующий идет на место текущего
-        result_list[cur_idx + 1] = current_element  # текущий идет на место следующего
+        result_list[
+            cur_idx + 1] = current_element  # текущий идет на место следующего
     cur_idx += 2  # Переходим к следующей паре значений
 print(result_list)
 
@@ -48,7 +49,8 @@ else:
 # Через словарь
 seasons_by_month_dictionary = {1: 'Зима', 2: 'Зима', 3: 'Весна', 4: 'Весна',
                                5: 'Весна', 6: 'Лето', 7: 'Лето', 8: 'Лето',
-                               9: 'Осень', 10: 'Осень', 11: 'Осень', 12: 'Зима'}
+                               9: 'Осень', 10: 'Осень', 11: 'Осень',
+                               12: 'Зима'}
 month = int(input("Введите месяц по номеру "))
 time_of_year = seasons_by_month_dictionary.get(month)
 if time_of_year is None:
@@ -56,16 +58,15 @@ if time_of_year is None:
 else:
     print(time_of_year)
 
-
 """4. Пользователь вводит строку из нескольких слов, разделённых пробелами. Вывести каждое слово с новой строки. 
 Строки нужно пронумеровать. Если слово длинное, выводить только первые 10 букв в слове."""
 
 my_line = input("Введите строку, пожалуйста")
-my_word = my_line.split()  #  список слов
+my_word = my_line.split()  # список слов
 num = 1
-for el in range(my_line.count(' ') + 1):  #  цикл по словам
-    if len(str(my_word[el])) <= 10:  #  слово меньше или равно 10 символам
-        print(f" {num} {my_word[el]}")  #  вывод слова
+for el in range(my_line.count(' ') + 1):  # цикл по словам
+    if len(str(my_word[el])) <= 10:  # слово меньше или равно 10 символам
+        print(f" {num} {my_word[el]}")  # вывод слова
         num += 1
     else:
         print(f" {num} {my_word[el][0:10]}")  # вывод слова больше 10 символов
@@ -85,8 +86,8 @@ my_schedule = [7, 5, 3, 3, 2]
 print(f"Рейтинг - {my_schedule}")
 digit = int(input("Введите число (333 - выход из программы) "))
 while digit != 333:
-    for el in range(len(my_schedule)):  #  Перебор списка
-        if my_schedule[el] == digit:  #  Элемент равен введенной цифре
+    for el in range(len(my_schedule)):  # Перебор списка
+        if my_schedule[el] == digit:  # Элемент равен введенной цифре
             my_schedule.insert(el + 1, digit)  # добавим за ним
             break
         elif my_schedule[0] < digit:  # 1-й элемент меньше введенной цифры
@@ -100,4 +101,4 @@ while digit != 333:
             my_schedule.insert(el + 1, digit)
             break
     print(f"текущий список - {my_schedule}")
-    digit = int(input("Введите число "))  #  Просим ввести следующее число
+    digit = int(input("Введите число "))  # Просим ввести следующее число
