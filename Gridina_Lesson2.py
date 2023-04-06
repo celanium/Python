@@ -60,16 +60,15 @@ else:
 """4. Пользователь вводит строку из нескольких слов, разделённых пробелами. Вывести каждое слово с новой строки. 
 Строки нужно пронумеровать. Если слово длинное, выводить только первые 10 букв в слове."""
 
-my_line = input("Введите строку пожалуйста ")
-my_word = []
+my_line = input("Введите строку, пожалуйста")
+my_word = my_line.split()  #  список слов
 num = 1
-for el in range(my_line.count(' ') + 1):
-    my_word = my_line.split()
-    if len(str(my_word)) <= 10:
-        print(f" {num} {my_word[el]}")
+for el in range(my_line.count(' ') + 1):  #  цикл по словам
+    if len(str(my_word[el])) <= 10:  #  слово меньше или равно 10 символам
+        print(f" {num} {my_word[el]}")  #  вывод слова
         num += 1
     else:
-        print(f" {num} {my_word[el][0:10]}")
+        print(f" {num} {my_word[el][0:10]}")  # вывод слова больше 10 символов
         num += 1
 
 '''5. Реализовать структуру «Рейтинг», представляющую собой набор натуральных чисел, который не возрастает. 
@@ -86,15 +85,19 @@ my_schedule = [7, 5, 3, 3, 2]
 print(f"Рейтинг - {my_schedule}")
 digit = int(input("Введите число (333 - выход из программы) "))
 while digit != 333:
-    for el in range(len(my_schedule)):
-        if my_schedule[el] == digit:
+    for el in range(len(my_schedule)):  #  Перебор списка
+        if my_schedule[el] == digit:  #  Элемент равен введенной цифре
+            my_schedule.insert(el + 1, digit)  # добавим за ним
+            break
+        elif my_schedule[0] < digit:  # 1-й элемент меньше введенной цифры
+            my_schedule.insert(0, digit)  # добавим в начало списка
+            break
+        elif my_schedule[-1] > digit:  # последний элемент больше введенной цифры
+            my_schedule.append(digit)  # добавим в конец списка
+            break
+        elif my_schedule[el] > digit and my_schedule[el + 1] < digit:
+            #  добавим между двумя элементами
             my_schedule.insert(el + 1, digit)
             break
-        elif my_schedule[0] < digit:
-            my_schedule.insert(0, digit)
-        elif my_schedule[-1] > digit:
-            my_schedule.append(digit)
-        elif my_schedule[el] > digit and my_schedule[el + 1] < digit:
-            my_schedule.insert(el + 1, digit)
     print(f"текущий список - {my_schedule}")
-    digit = int(input("Введите число "))
+    digit = int(input("Введите число "))  #  Просим ввести следующее число
