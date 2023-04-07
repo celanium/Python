@@ -86,7 +86,6 @@ def my_func(x, y):
             return result
         for x in range(power):
             result *= value
-            print(f'''step - {x} value - {result}''')
         return result
     except ValueError:
         print('Ошибка значения')
