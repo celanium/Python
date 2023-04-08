@@ -101,12 +101,52 @@ print(f'''Результат - {my_func(input("Введите 1 число "),
 к уже подсчитанной сумме. Но если вместо числа вводится специальный символ, выполнение программы завершается. Если специальный символ 
 введён после нескольких чисел, то вначале нужно добавить сумму этих чисел к полученной ранее сумме и после этого завершить программу.'''
 
+sum_of_numbers = 0
+exit_asked = False
+while not exit_asked:
+    number_list = input(
+        'Введите числа, разделенные пробелом, или x для выхода').split()
+    sum_of_current_input = 0
+    for number in number_list:
+        if number.lower() == 'x':
+            exit_asked = True
+            break
+        else:
+            try:
+                value = int(number)
+                sum_of_current_input += value
+            except ValueError:
+                print(f'Ошибка значения {number}')
+    sum_of_numbers += sum_of_current_input
+    print(f'Текущая сумма {sum_of_numbers}')
+print(f'Финальная сумма {sum_of_numbers}')
+
+
 '''6. Реализовать функцию int_func(), принимающую слова из маленьких латинских букв и возвращающую их же, но с прописной первой буквой. 
 Например, print(int_func(‘text’)) -> Text.
 Перевести первую букву каждого слова в верхний регистр, остальные - в нижний
 print("ехал грека через реку".title())
 -> Ехал Грека Через Реку'''
 
+
+def int_func(word):
+    return str(word).title()
+
+
+print(int_func(input("Введите слово:")))
+
+
 '''7. Продолжить работу над заданием. В программу должна попадать строка из слов, разделённых пробелом. 
 Каждое слово состоит из латинских букв в нижнем регистре. Нужно сделать вывод исходной строки, 
 но каждое слово должно начинаться с заглавной буквы. Используйте написанную ранее функцию int_func().'''
+
+
+def format_words(words):
+    res = ""
+    for word in str(words).split():
+        res += int_func(word)
+    return res
+
+
+print(int_func(input("Введите слова, разделенные пробелами:")))
+
