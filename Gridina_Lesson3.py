@@ -48,19 +48,14 @@ def my_func(*args):
         if len(args) > 3:
             print("Слишком много чисел")
             return
-        max1 = None
-        max2 = None
+        max_list = []
         for x in args:
-            value = int(x)
-            if max1 is None or max1 < value:
-                max1 = value
-            elif max2 is None and max1 is not None:
-                max2 = value
-            elif max2 is not None and max1 is not None:
-                if value > max1:
-                    max1 = value
-                elif max1 > value > max2:
-                    max2 = value
+            max_list.append(int(x))
+        sorted_list = sorted(max_list, reverse=True)
+        print(sorted_list)
+        max1 = sorted_list[0]
+        max2 = sorted_list[1]
+        print (f'''max1 - {max1} max2 - {max2}''')
         return max1 + max2
     except ValueError:
         print('Ошибка значения')
