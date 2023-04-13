@@ -9,9 +9,26 @@
 Физкультура: — 30(пр) —
 Пример словаря: {“Информатика”: 170, “Физика”: 40, “Физкультура”: 30}'''
 
-subj = {}
-with open('file_6.txt', 'r') as init_f:
-    for line in init_f:
-        subject, lecture, practice, lab = line.split()
-        subj[subject] = int(lecture) + int(practice) + int(lab)
-    print(f'Общее количество часов по предмету - \n {subj}')
+
+def extract_hours(hour_string):
+    string_val = str(hour_string)
+    if string_val.count("(") > 0:
+        return int(string_val.split("(", 1)[0])
+    else:
+        return 0
+
+
+try:
+    subj = {}
+    with open('5_6.txt', 'r', encoding="utf-8") as file_obj:
+        for line in file_obj:
+            subject, lecture, practice, lab = line.split()
+            lecture = extract_hours(lecture)
+            practice = extract_hours(practice)
+            lab = extract_hours(lab)
+            subj[subject] = lecture + practice + lab
+        print(f'Общее количество часов по предметам - \n {subj}')
+except IOError:
+    print('Ошибка в файле')
+except ValueError:
+    print('Ошибка значения')

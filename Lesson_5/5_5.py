@@ -2,16 +2,21 @@
 Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
 Алгоритм: Сначала создать файл и записать в него данные, затем его прочитать и выполнить подсчет суммы.'''
 
-def summary():
-    try:
-        with open('file_5.txt', 'w+') as file_obj:
-            line = input('Введите цифры через пробел \n')
-            file_obj.writelines(line)
-            my_numb = line.split()
 
-            print(sum(map(int, my_numb)))
+def summary():
+    filename = '5_5_new.txt'
+    try:
+        with open(filename, 'w+', encoding="utf-8") as file_write:
+            line = '1 2 4 5 5 6 3 66 6 63 3 3 2\n'
+            file_write.writelines(line)
+        with open(filename, 'r', encoding="utf-8") as file_read:
+            for line in file_read:
+                my_numb = line.split()
+                print(f'Сумма: {sum(map(int, my_numb))}')
     except IOError:
         print('Ошибка в файле')
     except ValueError:
-        print('Неправильно набран номер. Ошибка ввода-вывода')
+        print('Ошибка значения')
+
+
 summary()
