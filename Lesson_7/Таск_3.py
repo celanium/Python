@@ -27,7 +27,7 @@ class Cell:
             return Cell(self._count - other._count)
 
         # raise ValueError(f"{self._count} - {other._count}: impossible operation")
-        print(f"{self._count} - {other._count}: impossible operation")
+        print(f"{self._count} - {other._count}: операция невозможна")
 
     def __mul__(self, other: "Cell") -> "Cell":
         return Cell(self._count * other._count)
@@ -44,9 +44,9 @@ class Cell:
 
 
 if __name__ == '__main__':
-    c1 = Cell(17)
+    c1 = Cell(16)
     print(c1)
-    c2 = Cell(13)
+    c2 = Cell(14)
     print(c2)
 
     print(c1 + c2)
@@ -55,6 +55,6 @@ if __name__ == '__main__':
     print(c2 - c2)
     print(c1 * c2)
     print(c1 / c2)
-    print((c1 * c2).make_order(23))
+    print((c1 * c2).make_order(25))
 
 
