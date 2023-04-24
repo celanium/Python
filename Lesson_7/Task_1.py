@@ -9,29 +9,44 @@
 
 
 class Matrix:
-    template_matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    def __init__(self, rows):
+        self.matrix = rows
 
-    def __init__(self, matrix_list_1, matrix_list_2):
-        self.matrix_list_1 = matrix_list_1
-        self.matrix_list_2 = matrix_list_2
+    def get_rows(self):
+        return len(self.matrix)
+
+    def get_columns(self):
+        return len(self.matrix[0])
+
+    def __add__(self, other_matrix):
+        if self.get_rows() != other_matrix.get_rows() or self.get_columns() != other_matrix.get_columns():
+            raise ValueError('Матрицы должны иметь одинаковые размеры.')
+        result_matrix = []
+        for i in range(self.get_rows()):
+            result_row = []
+            for j in range(self.get_columns()):
+                result_row.append(self.matrix[i][j] + other_matrix.matrix[i][j])
+            result_matrix.append(result_row)
+        return Matrix(result_matrix)
 
     def __str__(self):
         return str(
             '\n'.join([
                 str('\t'.join([
-                    str(self.template_matrix[a][b]) for b in
-                    range(len(self.template_matrix[a]))
-                ])) for a in range(len(self.template_matrix))
+                    str(self.matrix[a][b]) for b in
+                    range(len(self.matrix[a]))
+                ])) for a in range(len(self.matrix))
             ])
         )
 
-    def __add__(self):
-        for a in range(len(self.matrix_list_1)):
-            for b in range(len(self.matrix_list_2[a])):
-                self.template_matrix[a][b] = self.matrix_list_1[a][b] + \
-                                             self.matrix_list_2[a][b]
-        return self.__str__()
 
+# create two matrices
+matrix_a = Matrix([[1, 2, 3], [3, 4, 5], [5, 6, 5]])
+matrix_b = Matrix([[5, 6, 1], [7, 8, 2], [9, 10, 11]])
 
-print(Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]],
-             [[1, 2, 3], [4, 5, 6], [7, 8, 9]]).__add__())
+# add the matrices together
+result = matrix_a + matrix_b
+
+# print the result
+print(result)
+
